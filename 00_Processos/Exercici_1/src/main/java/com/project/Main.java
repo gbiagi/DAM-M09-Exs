@@ -35,8 +35,8 @@ public class Main {
         Callable<Integer> task3 = new Task3(sharedData);
 
         try {
-            executor.submit(task1);
-            executor.submit(task2);
+            executor.execute(task1);
+            executor.execute(task2);
             Integer result = executor.submit(task3).get();
         } catch (InterruptedException | ExecutionException e) {
             System.out.println("No se pudo obtener el saldo de la cuenta.");

@@ -15,7 +15,7 @@ class Task3 implements Callable<Integer> {
 
     @Override
     public Integer call() throws InterruptedException {
-        int delay = ThreadLocalRandom.current().nextInt(1, 4);
+        int delay = ThreadLocalRandom.current().nextInt(4, 7);
         TimeUnit.SECONDS.sleep(delay);
         Integer value = sharedData.get("transf1");
         if (value == null) {
