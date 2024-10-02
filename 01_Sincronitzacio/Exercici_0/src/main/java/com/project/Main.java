@@ -6,12 +6,12 @@ public class Main {
     public static void main(String[] args) {
         
         // Crear una frase que se completara con cada hilo
-        private String fraseCompleta = "";
+        StringBuilder fraseCompleta = new StringBuilder();
 
         // Crear el CyclicBarrier
         CyclicBarrier barrier = new CyclicBarrier(3, new Runnable() {
             public void run() {
-                System.out.println(fraseCompleta);
+                System.out.println(fraseCompleta + " Toodos los procesos completados.");
             }
         });
 
@@ -22,7 +22,8 @@ public class Main {
         Runnable process1 = () -> {
             try {
                 Thread.sleep(1000);
-                fraseCompleta += "1. Primer proceso completado\n";
+                System.out.println("1. Primer proceso completado");
+                fraseCompleta.append("Uno... ");
                 barrier.await();
             } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
@@ -32,7 +33,8 @@ public class Main {
         Runnable process2 = () -> {
             try {
                 Thread.sleep(1000);
-                fraseCompleta += "2. Segundo proceso completado\n";
+                System.out.println("2. Segundo proceso completado");
+                fraseCompleta.append("Dos... ");
                 barrier.await();
             } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
@@ -41,8 +43,9 @@ public class Main {
 
         Runnable process3 = () -> {
             try {
-                Thread.sleep(1000);
-                fraseCompleta += "3. Tercer proceso completado\n";
+                Thread.sleep(3000);
+                System.out.println("3. Tercer proceso completado");
+                fraseCompleta.append("Tres... ");
                 barrier.await();
             } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
